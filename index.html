@@ -8,6 +8,8 @@
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 </head>
 <body>
+    <!-- Netlify Identity -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <!-- 顶部导航 -->
     <header class="header" id="header">
         <div class="container">
@@ -550,5 +552,16 @@
     <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
 
     <script src="js/main.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
 </body>
 </html>
